@@ -58,9 +58,10 @@ def euler_loop(y, h, n):
     
 if __name__ == "__main__":
     # precision
-    eps = 10**-5
+    eps = 10**-3
     xmin = 0
     xmax = 1.4
+    delta_h = 0.1#0.001
     nbins = int(
         (xmax - xmin) / 10**-8
     )
@@ -77,11 +78,12 @@ if __name__ == "__main__":
 
     Xs = []
     Ys = []
-    h_values = np.arange(h_min, h_max, 0.001)
+    h_values = np.arange(h_min, h_max, delta_h)
 
     start = time.time()
 
     for h in h_values:
+        print(f"{h=}")
         histogram.reset_freqs()
         y_approx, y_approxes = euler_loop(y0, h, n_iter_max)
 
